@@ -1,4 +1,5 @@
 import fs from 'fs';
+import chalk from 'chalk';
 
 export const getNotes = function () {
     return 'Your notes...'
@@ -13,23 +14,23 @@ export const addNote = function (title,body) {
             body: body
         });
         saveNotes(notes);
-        console.log(notes);
+        console.log(chalk.green('Note has been added.'));
     } else {
-        console.log('There already exist note title named: ' + title);
+        console.log(chalk.red('There already exist note title named: ' + title));
     }
 }
 
 export const removeNote = function (title) {
     const notes = loadNotes();
     const loadedNotesCount = notes.length;
-    var message = 'There is not any note title named ' + title;
-    notes.filter(function (note) {
+    var message = chalk.red('There is not any note title named ' + title);
+    const notesToKeep = notes.filter(function (note) {
         return note.title !== title;
     });
-    const filteredNotesCount = notes.length;
+    const filteredNotesCount = notesToKeep.length;
     if(loadedNotesCount > filteredNotesCount){
-        message = 'The note title named' + title + 'has been removed.';
-        saveNotes(notes);
+        message = chalk.green('The note title named ' + title + ' has been removed.');
+        saveNotes(notesToKeep);
     }
     console.log(message);
 }
