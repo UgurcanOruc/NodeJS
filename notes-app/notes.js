@@ -1,14 +1,10 @@
 import fs from 'fs';
 import chalk from 'chalk';
 
-export const getNotes = () => {
-    return 'Your notes...'
-}
-
 export const addNote = (title,body) => {
     const notes = loadNotes();
-    const isExist = checkTitles(notes, title);
-    if(!isExist) {
+    const duplicateNote = notes.map(note => note.title === title);
+    if(!duplicateNote) {
         notes.push({
             title: title,
             body: body
@@ -23,14 +19,31 @@ export const addNote = (title,body) => {
 export const removeNote = (title) => {
     const notes = loadNotes();
     var message = chalk.red('There is not any note title named ' + title);
-    
     const notesToKeep = notes.filter((note) => note.title !== title);
-
     if(notes.length > notesToKeep.length){
         message = chalk.green('The note title named ' + title + ' has been removed.');
         saveNotes(notesToKeep);
     }
     console.log(message);
+}
+
+export const listNotes = () => {
+    const notes = loadNotes();
+    console.log(chalk.inverse('Your Notes'));
+    notes.forEach(note => {
+        console.log(chalk.red(note.title));
+    });
+}
+
+export const readNote = (title) => {
+    const notes = loadNotes();
+    var note = notes.find(note => note.title === title);
+    if (note) {
+        console.log(chalk.inverse(note.title));
+        console.log(chalk.blue(note.body));
+    } else {
+        console.log(chalk.red('There is no note titled:' + title));
+    }
 }
 
 const saveNotes = (notes) => {
@@ -46,9 +59,4 @@ const loadNotes = () => {
     } catch (e) {
         return [];
     }
-}
-
-const checkTitles = (notes, title) => {
-    const duplicateNotes = notes.filter((note) => note.title === title);
-    return duplicateNotes.length === 0 ? false : true;
 }
