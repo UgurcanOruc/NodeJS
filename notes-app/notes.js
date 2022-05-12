@@ -4,8 +4,12 @@ import chalk from 'chalk';
 export const addNote = (title,body) => {
     const notes = loadNotes();
 <<<<<<< HEAD
+<<<<<<< HEAD
     const duplicateNote = notes.find(note => note.title === title)
     
+=======
+    const duplicateNote = notes.map(note => note.title === title);
+>>>>>>> 31dc2d10195e2cf2f8991c64113d890bff614eda
 =======
     const duplicateNote = notes.map(note => note.title === title);
 >>>>>>> 31dc2d10195e2cf2f8991c64113d890bff614eda
@@ -35,6 +39,7 @@ export const removeNote = (title) => {
 export const listNotes = () => {
     const notes = loadNotes();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     console.log(chalk.inverse('Your Notes'));
 
@@ -53,6 +58,8 @@ export const readNotes = (title) => {
     } else {
         console.log(chalk.red('There is not any note titled: ' + title));
 =======
+=======
+>>>>>>> 31dc2d10195e2cf2f8991c64113d890bff614eda
     console.log(chalk.inverse('Your Notes'));
     notes.forEach(note => {
         console.log(chalk.red(note.title));
@@ -67,6 +74,9 @@ export const readNote = (title) => {
         console.log(chalk.blue(note.body));
     } else {
         console.log(chalk.red('There is no note titled:' + title));
+<<<<<<< HEAD
+>>>>>>> 31dc2d10195e2cf2f8991c64113d890bff614eda
+=======
 >>>>>>> 31dc2d10195e2cf2f8991c64113d890bff614eda
     }
 }

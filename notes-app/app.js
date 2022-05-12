@@ -2,7 +2,11 @@ import chalk from 'chalk';
 import yargsjs from "yargs";
 import { hideBin } from 'yargs/helpers';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { getNotes, addNote, removeNote, listNotes, readNotes } from './notes.js'
+=======
+import { addNote, removeNote, listNotes, readNote } from './notes.js'
+>>>>>>> 31dc2d10195e2cf2f8991c64113d890bff614eda
 =======
 import { addNote, removeNote, listNotes, readNote } from './notes.js'
 >>>>>>> 31dc2d10195e2cf2f8991c64113d890bff614eda
@@ -61,7 +65,11 @@ yargs.command({
     command: 'read',
     describe:'Read a note',
 <<<<<<< HEAD
+<<<<<<< HEAD
     builder:  {
+=======
+    builder: {
+>>>>>>> 31dc2d10195e2cf2f8991c64113d890bff614eda
 =======
     builder: {
 >>>>>>> 31dc2d10195e2cf2f8991c64113d890bff614eda
@@ -72,8 +80,13 @@ yargs.command({
         }
     },
 <<<<<<< HEAD
+<<<<<<< HEAD
     handler (argv) {
         readNotes(argv.title);
+=======
+    handler (args) {
+        readNote(args.title);
+>>>>>>> 31dc2d10195e2cf2f8991c64113d890bff614eda
 =======
     handler (args) {
         readNote(args.title);
