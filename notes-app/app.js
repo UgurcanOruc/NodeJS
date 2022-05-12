@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import yargsjs from "yargs";
 import { hideBin } from 'yargs/helpers';
-import { getNotes, addNote, removeNote } from './notes.js'
+import { getNotes, addNote, removeNote, listNotes, readNotes } from './notes.js'
 
 const yargs = yargsjs(hideBin(process.argv));
 const { argv } = yargsjs(process.argv);
@@ -48,7 +48,7 @@ yargs.command({
     command:'list',
     describe:'List your notes',
     handler () {
-        console.log('Listing out all notes');
+        listNotes();
     }
 });
 
@@ -56,8 +56,15 @@ yargs.command({
 yargs.command({
     command: 'read',
     describe:'Read a note',
-    handler () {
-        console.log('Reading a note');
+    builder:  {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler (argv) {
+        readNotes(argv.title);
     }
 });
 
